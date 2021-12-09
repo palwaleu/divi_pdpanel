@@ -96,26 +96,24 @@ class Page {
 		$r .= '<h1 class="start-screen-title"><span aria-label="Zum Desktop zurück" data-microtip-position="right" role="tooltip"><span onclick="openMetro()" class="mif-arrow-left backtodesktop"></span></span> Start</h1>';
 		$r .= '<div style="margin-top:50px;" class="tiles-area clear">';
 		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="General">';
-		$r .= '<div data-role="tile" data-size="small" class="bg-brown fg-white col-2 row-6 tile-small" data-role-tile="true"><span class="mif-wind icon"></span></div>';
-		$r .= '<a onclick="createWindowYoutube()" data-role="tile" class="bg-indigo fg-white ">';
-		$r .= '<i class="diviicon-systemsteuerung icon"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>';
-		$r .= '<span class="branding-bar">Github</span>';
-		$r .= '<span class="badge-bottom">30</span>';
-		$r .= '</a>';
+		
+		
+		$r .= '<div data-role="tile" class="bg-emerald fg-white">';
+		$r .= '<span class="mif-calendar icon"></span>';
+		$r .= '<span class="branding-bar">Events</span>'; //Veranstaltungen
+		$r .= '<span class="badge-bottom">10</span>';
+		$r .= '</div>';
 		$r .= '<div data-role="tile" class="bg-cyan fg-white">';
 		$r .= '<span class="mif-envelop icon"></span>';
-		$r .= '<span class="branding-bar">Email</span>';
+		$r .= '<span class="branding-bar">Email</span>'; //Email Client
 		$r .= '<span class="badge-bottom">10</span>';
 		$r .= '</div>';
 		$r .= '<div data-role="tile" class="bg-orange fg-white" data-size="wide">';
 		$r .= '<span class="mif-chrome icon"></span>';
-		$r .= '<span class="branding-bar">Chrome</span>';
-		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="small">';
-		$r .= '<span class="mif-apple icon"></span>';
+		$r .= '<span class="branding-bar">Chrome</span>'; //Chrome Browser
 		$r .= '</div>';
 		$r .= '<div data-role="tile" data-size="small" class="bg-red fg-white">';
-		$r .= '<span class="mif-bell icon"></span>';
+		$r .= '<span class="mif-bell icon"></span>'; //Alle Benachrichtigungen
 		$r .= '</div>';
 		
 		$r .= '<div onclick="createWindowSettings()" aria-label="Systemsteuerung" data-microtip-position="top" role="tooltip" data-role="tile" data-size="small" class="bg-teal fg-white col-1 row-6"><span data-role="hint"
@@ -124,102 +122,90 @@ class Page {
 		$r .= '<span class="mif-windows icon"></span>';
 		$r .= '</span></div>';
 		
-		$r .= '<div data-role="tile" data-size="small" class="bg-brown fg-white col-2 row-6">';
-		$r .= '<span class="mif-wind icon"></span>';
+	
+		$r .= '<div data-role="tile" data-size="small" class="bg-cobalt fg-white">';
+		$r .= '<span class="mif-table icon"></span>'; // Regelwerk
 		$r .= '</div>';
-		$r .= '<div data-role="tile" class="bg-cyan fg-white">';
-		$r .= '<span class="mif-table icon"></span>';
-		$r .= '<span class="branding-bar">Tables</span>';
-		$r .= '</div>';
+		
     	$r .= '</div>';
-		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Images">';
-		$r .= '<div data-role="tile" data-cover="../../images/me.jpg">';
-		$r .= '<span class="branding-bar">Sergey Pimenov</span>';
+		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Bilder">';
+		$r .= '<div class="bg-violet" data-role="tile" data-cover="img/user.svg">';
+		$r .= '<span class="branding-bar">Ahent Aras</span>';
 		$r .= '</div>';
-		$r .= '<div data-role="tile" data-effect="animate-fade" data-effect-duration="1000">';
-		$r .= '<div class="slide" data-cover="../../images/me2.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/me.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/me3.jpg"></div>';
+		$r .= '<div data-role="tile" data-effect="animate-slide-left" data-effect-duration="10" data-effect="image-set" class="bg-violet">';
+		$r .= '<img src="img/desktop/desktop1.jpg">';
+		$r .= '<img src="img/desktop/desktop2.jpg">'; //Gallery - Alle Bilder anzeigen
         $r .= '<span class="branding-bar">Gallery</span>';
 		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="wide" data-effect="animate-slide-left">';
-		$r .= '<div class="slide" data-cover="../../images/1.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/2.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/3.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/4.jpg"></div>';
-		$r .= '<div class="slide" data-cover="../../images/5.jpg"></div>';
-		$r .= '<span class="branding-bar">Gallery</span>';
-		$r .= '</div>';
 		$r .= '<div data-role="tile" data-size="wide" data-effect="image-set">';
-		$r .= '<img src="../../images/jeki_chan.jpg">';
-		$r .= '<img src="../../images/shvarcenegger.jpg">';
-		$r .= '<img src="../../images/vin_d.jpg">';
-		$r .= '<img src="../../images/jolie.jpg">';
-		$r .= '<img src="../../images/jek_vorobey.jpg">';
+		$r .= '<img src="img/desktop/desktop1.jpg">';
+		$r .= '<img src="img/desktop/desktop2.jpg">';
+		$r .= '<img src="img/desktop/desktop3.jpg">';
+		$r .= '<img src="img/desktop/desktop4.jpg">';
+		$r .= '<img src="img/desktop/desktop5.jpg">';
+		$r .= '<img src="img/desktop/desktop6.jpg">';
+		$r .= '<img src="img/desktop/desktop7.jpg">';
+		$r .= '<img src="img/desktop/desktop8.jpg">';
+		$r .= '<img src="img/desktop/desktop9.jpg">';
+		$r .= '<img src="img/desktop/desktop10.jpg">';
+		$r .= '<img src="img/desktop/desktop11.jpg">';
+		$r .= '<img src="img/desktop/desktop12.jpg">';
+		$r .= '<img src="img/desktop/desktop13.jpg">';
+		$r .= '<img src="img/desktop/desktop14.jpg">';
+		$r .= '<img src="img/desktop/desktop15.jpg">';
+		$r .= '<img src="img/desktop/desktop16.jpg">';
+		$r .= '<img src="img/desktop/desktop17.jpg">';
+		$r .= '<img src="img/desktop/desktop18.jpg">';
+		$r .= '<img src="img/desktop/desktop19.jpg">';
+		$r .= '<img src="img/desktop/desktop20.jpg">';
 		$r .= '</div>';
 		$r .= '</div>';
-        $r .= '<div class="tiles-grid tiles-group size-1 fg-white" data-group-title="Office">';
-		$r .= '<div data-role="tile" data-size="small">';
-		$r .= '<img src="../../images/outlook.png" class="icon">';
+		
+        $r .= '<div class="tiles-grid tiles-group size-1 fg-white" data-group-title="Polizei">';
+		$r .= '<div data-role="tile" data-size="small" class="bg-crimson">';
+		$r .= '<img src="img/policedatabase.png" class="icon">'; //EMA Abfrage
 		$r .= '</div>';
 		$r .= '<div data-role="tile" data-size="small" class="bg-brown">';
-		$r .= '<img src="../../images/word.png" class="icon">';
+		$r .= '<img src="img/carsearch.png" class="icon">'; //Halter Abfrage
 		$r .= '</div>';
 		$r .= '<div data-role="tile" data-size="small" class="bg-green">';
-		$r .= '<img src="../../images/excel.png" class="icon">';
+		$r .= '<img src="img/warranty.png" class="icon">'; //Fandungsliste
         $r .= '</div>';
-		$r .= '<div data-role="tile" data-size="small" class="bg-red">';
-		$r .= '<img src="../../images/access.png" class="icon">';
+		$r .= '<div data-role="tile" data-size="small" class="bg-olive">';
+		$r .= '<img src="img/prison.png" class="icon">'; //Alle im Prison
 		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="small" class="bg-teal">';
-		$r .= '<img src="../../images/powerpoint.png" class="icon">';
+		$r .= '<div data-role="tile" data-size="small" class="bg-lightBlue">';
+		$r .= '<img src="img/police.png" class="icon">'; //Abzeigen (Erstatten)
 		$r .= '</div>';
+		$r .= '<div data-role="tile" data-size="small" class="bg-amber">';
+		$r .= '<img src="img/garage.png" class="icon">'; //Beschlagnahmte Fahrzeuge
 		$r .= '</div>';
-		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Games">'; 
-   		$r .= '<div data-role="tile" data-cover="../../images/Battlefield_4_Icon.png">';
-		$r .= '<span class="branding-bar">Battlefield 4</span>';
+		$r .= '<div data-role="tile" data-size="small" class="bg-taupe">';
+		$r .= '<img src="img/speedcamera.png" class="icon">'; //Alle Blitzer (Blitzerverzeichnis)
 		$r .= '</div>';
-		$r .= '<div data-role="tile" class="bg-green">';
-		$r .= '<img src="../../images/x-box.png" class="icon">';
-		$r .= '<span class="branding-bar">XBOX ONE</span>';
+		$r .= '<div data-role="tile" data-size="small" class="bg-darkRed">';
+		$r .= '<img src="img/evidence.png" class="icon">'; //Asservatenkammer
 		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="wide" data-cover="../../images/x-box.png">';
-		$r .= '<span class="branding-bar">XBOX LIVE</span>';
- 		$r .= '<span class="badge-top">5</span>';
+		$r .= '<div data-role="tile" data-size="small" class="bg-mauve">';
+		$r .= '<img src="img/stgb.png" class="icon">'; //Das Strafgesetzbuch 
 		$r .= '</div>';
-		$r .= '</div>';
-		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="General">';
-		$r .= '<a href="https://github.com/olton/Metro-UI-CSS" data-role="tile" class="bg-indigo fg-white">';
-		$r .= '<span class="mif-github icon"></span>';
-		$r .= '<span class="branding-bar">Github</span>';
-		$r .= '<span class="badge-bottom">30</span>';
-		$r .= '</a>';
-        $r .= '<div data-role="tile" class="bg-cyan fg-white">';
-		$r .= '<span class="mif-envelop icon"></span>';
-		$r .= '<span class="branding-bar">Email</span>';
-		$r .= '<span class="badge-bottom">10</span>';
-		$r .= '</div>';
-		$r .= '<div data-role="tile" class="bg-orange fg-white" data-size="wide">';
-		$r .= '<span class="mif-chrome icon"></span>';
-		$r .= '<span class="branding-bar">Chrome</span>';
-		$r .= '</div>';    
-		$r .= '<div data-role="tile" data-size="small">';
-		$r .= '<span class="mif-apple icon"></span>';
-		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="small" class="bg-red fg-white">';
-		$r .= '<span class="mif-bell icon"></span>';
-		$r .= '</div>';
-		$r .= '<div data-role="tile" data-size="small" class="bg-teal fg-white col-1 row-6">';
-		$r .= '<span class="mif-windows icon"></span>';
-		$r .= '</div>';
-        $r .= '<div data-role="tile" data-size="small" class="bg-brown fg-white col-2 row-6">';
-		$r .= '<span class="mif-wind icon"></span>';
-		$r .= '</div>';
-		$r .= '<div data-role="tile" class="bg-cyan fg-white">';
-		$r .= '<span class="mif-table icon"></span>';
-		$r .= '<span class="branding-bar">Tables</span>';
+		$r .= '<div data-role="tile" data-size="small" class="bg-indigo">';
+		$r .= '<img src="img/stvo.png" class="icon">'; //Die Straßenverkehrsordnung
 		$r .= '</div>';
 		$r .= '</div>';
+		
+		$r .= '<div class="tiles-grid tiles-group size-2 fg-white" data-group-title="Administration">'; 
+		$r .= '<div onclick="createAllAccounts()" data-role="tile" class="bg-magenta">';
+		$r .= '<img src="img/accounts.png" class="icon">';
+		$r .= '<span class="branding-bar">Alle Accounts</span>';
+		$r .= '</div>';
+		$r .= '<div data-role="tile" class="bg-grayBlue">';
+		$r .= '<img src="img/policenews.png" class="icon">';
+		$r .= '<span class="branding-bar">News</span>';
+		$r .= '</div>';
+		$r .= '</div>';
+		
+		
 		$r .= '</div>';  
         $r .= '</div>';
 		$r .= '</div>';

@@ -52,10 +52,18 @@ class SettingsContent {
 		$r .= '<span class="branding-bar">Datum & Uhrzeit</span>';
 		$r .= '</div>';
         $r .= '</a></div>';
-		$r .= '</div>';
-		$r .= '</div>';
-		$r .= '</div>';
 		
+		/*$r .= '<div class="cell-3"><a onclick="parent.createWindowSettings()">';
+		$r .= '<div data-role="tile" data-role-tile="true" class="tile-medium">';
+		$r .= '<span class="mif-watch icon"></span>';
+		$r .= '<span class="branding-bar">Datum & Uhrzeit</span>';
+		$r .= '</div>';
+        $r .= '</a></div>';*/
+		
+		$r .= '</div>';
+		$r .= '</div>';
+		$r .= '</div>';
+	
 		echo $r;
 	}
 	
@@ -309,13 +317,13 @@ class SettingsContent {
 		$r .= '<tr><td>Rang</td><td>'.Users::getFrakRang().'</td></tr>';
 		$r .= '<tr><td>Beigetreten am</td><td>'.date("d.m.Y", Users::getUser()->addtime).'</td></tr>';
 		$r .= '<tr><td>Bewertung</td><td><input data-role="rating" data-stared-color="orange" data-value="';
-		$r .= Users::getUser()->valuation < 0 ? '0' : Users::getUser()->valuation > 5 ? '5' : Users::getUser()->valuation;
+		$r .= (Users::getUser()->valuation < 0) ? '0' : (Users::getUser()->valuation > 5) ? '5' : Users::getUser()->valuation;
 		$r .= '" data-static="true">';
 		$r .= Users::haveNewValation() ? '<br /><small style="color:#ea7115;">Ihre Bewertung wird demnächst aktualisiert!</small>' : '';
 		$r .= '</td></tr>';
     	$r .= '<tr><td>Interner Funkcode</td><td>'.Users::getUser()->funkcode.'</td></tr>';
 		$r .= '<tr><td>Ausbilder Qualifikation</td><td>';
-		$r .= Users::getUser()->trainer == 0 && Users::getUser()->PD_Rang <= 12 ? 'Nein' : 'Ja';
+		$r .= (Users::getUser()->trainer == 0 && Users::getUser()->PD_Rang <= 12) ? 'Nein' : 'Ja';
 		$r .= '</td></tr>';
 		$r .= '</tbody>';
 		$r .= '</table>';

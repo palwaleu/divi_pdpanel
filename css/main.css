@@ -97,8 +97,7 @@ a.loginlink:hover {
 	margin-top:-7px;
 }
 
-.systemsteuerung-container-top {
-	height:100px;
+.systemsteuerung-container-top, .pakte-top {
 	background-color:#f2f2f2;
 	width: 100%; 
 	top:0; 
@@ -108,6 +107,26 @@ a.loginlink:hover {
 	padding-top:18px;
 	padding-bottom:18px;
 	padding-left:100px;
+}
+
+.systemsteuerung-container-top {
+	height:100px;
+}
+
+.pakte-top {
+	height: auto;
+	padding-right:100px;
+}
+
+#addPakte {
+	display: none;
+	margin-top:30px;
+}
+
+.addAkteRating {
+	display:none;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 .systemsteuerung_userpic {
@@ -178,4 +197,218 @@ a.loginlink:hover {
 
 .timeDateon {
 	line-height: 19px !important;
+}
+
+.dividropdown {
+  position: relative;
+  display: inline-block;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+.dividropdown:hover{
+  cursor:pointer;
+}
+.dividropdown > a, .dividropdown > button {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 6px 20px 6px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+}
+
+.dividropdown > a:before, .dividropdown > button:before {
+  position: absolute;
+  right: 7px;
+  top: 12px;
+  content: ' ';
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.dividropdown input[type=checkbox] {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  opacity: 0;
+}
+
+.dividropdown input[type=checkbox]:checked {
+  position: fixed;
+  z-index:+0;
+  top: 0px; left: 0px; 
+  right: 0px; bottom: 0px;
+}
+
+.dividown:disabled + .dividropdown > button {
+	background-color:#000;
+}
+
+.dividropdown ul {
+  position: absolute;
+  top: 18px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  left: 0px;
+  list-style: none;
+  padding: 4px 0px;
+  display: none;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,.175);
+	z-index: 50;
+	margin-left: -0.1rem;
+}
+
+.dividropdown input[type=checkbox]:checked + ul {
+  display: block;
+}
+
+.dividropdown ul li {
+  display: block;
+  padding: 6px 20px;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.dividropdown ul li:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.dividropdown ul li a {
+  text-decoration: none;
+  display: block;
+  color: black
+}
+
+.dividropdown .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  font-size: 1px;
+  padding: 0;
+}
+
+.pcontainer {
+  	margin-top: 50px;
+	margin-right: 100px;
+	margin-bottom: 50px;
+	margin-left: 50px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 4rem;
+  margin: 0 0 0 30px;
+  color: white;
+}
+.timeline:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #27293d;
+}
+.timeline .timeline-container {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.timeline .timeline-container .timeline-icon {
+  position: absolute;
+  left: -88px;
+  top: 4px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 2rem;
+  background: #4f537b;
+}
+.timeline .timeline-container .timeline-icon i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.timeline .timeline-container .timeline-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.timeline .timeline-container .timeline-body {
+  background: #27293d;
+  border-radius: 3px;
+  padding: 20px 20px 15px;
+  box-shadow: 1px 3px 9px rgba(0, 0, 0, 0.1);
+}
+.timeline .timeline-container .timeline-body:before {
+  content: "";
+  background: inherit;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  left: -10px;
+  transform: rotate(45deg);
+  border-radius: 0 0 0 2px;
+}
+.timeline .timeline-container .timeline-body .timeline-title {
+  margin-bottom: 1.4rem;
+}
+.timeline .timeline-container .timeline-body .timeline-title .badge {
+  background: #4f537b;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.timeline .timeline-container .timeline-body .timeline-subtitle, a.timeline-link,
+a.timeline-link:active, a.timeline-link:link {
+  margin-top: 16px;
+  font-size: 11px;
+	text-decoration:none;
+	color:#fff;
+}
+
+a.timeline-link:hover {
+	text-decoration:underline;
+}
+.timeline .timeline-container.primary .badge,
+.timeline .timeline-container.primary .timeline-icon {
+  background: #1d8cf8 !important;
+}
+.timeline .timeline-container.info .badge,
+.timeline .timeline-container.info .timeline-icon {
+  background: #11cdef !important;
+}
+.timeline .timeline-container.success .badge,
+.timeline .timeline-container.success .timeline-icon {
+  background: #00bf9a !important;
+}
+.timeline .timeline-container.warning .badge,
+.timeline .timeline-container.warning .timeline-icon {
+  background: #ff8d72 !important;
+}
+.timeline .timeline-container.danger .badge,
+.timeline .timeline-container.danger .timeline-icon {
+  background: #fd5d93 !important;
+}
+
+.padding10 {
+    padding: 0.625rem;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }

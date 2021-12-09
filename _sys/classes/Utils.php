@@ -1,5 +1,14 @@
 <?php
 
+class Utils {
+	public function getRankName($rang) {
+		global $_DB;
+		$stmt = $_DB[6]->prepare("SELECT RankName FROM `Factions_Ranks` WHERE `FactionID` = :fid AND `RankID` = :rid LIMIT 1");
+		$stmt->execute(array(':fid' => Fraction, ':rid' => $rang));
+		return $stmt->rowCount()==0 ? 'Unbekannt' : $stmt->fetch(PDO::FETCH_OBJ)->RankName;
+	}
+}
+
 /*class Utils {
 	private static $_supported_timezones = array(
 								"Europe/Berlin" => "Deutschland",

@@ -202,6 +202,42 @@ function createWindowSettings(){
     });
 }
 
+function createAllAccounts(){
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	openMetro();
+	Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        width: 700,
+		height: 500,
+		modal: false,
+		icon: "<img src='img/accounts.png' />",
+        title: "Accounts",
+		content : "http://localhost/newpd/_windows/accounts.php?ssid="+urlParams.get('ssid'),
+        clsContent: "bg-magenta"
+    });
+}
+
+function createPAkte(id, name){
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	Desktop.createWindow({
+        resizeable: true,
+        draggable: true,
+        width: 700,
+		height: 500,
+		modal: false,
+		place: 'top-right',
+		icon: "<i class='mif-file-text'></i>",
+        title: "Personalakte von "+name,
+		content : "http://localhost/newpd/_windows/pakte.php?ssid="+urlParams.get('ssid')+'&uid='+id,
+        clsContent: "bg-white"
+    });
+}
+
 function openCharm() {
     var charm = $("#charm").data("charms");
     charm.toggle();

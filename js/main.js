@@ -602,7 +602,466 @@ function _getTimeParam(param) {
 }
 
 
+function openDemoDialogActions(){
+        Metro.dialog.create({
+            title: "Use Windows location service?",
+            content: "<div>Bassus abactors ducunt ad triticum...</div><div id='djhejedk'></div>",
+            actions: [
+                {
+                    caption: "Agree",
+                    cls: "js-dialog-close alert",
+                    onclick: function(){
+						//$("#djhejedk").html("ok");
+						var lol = $("#okkk").html();
+						$("#okkk").remove();
+                        //alert(lol);
+                    }
+                },
+                {
+                    caption: "Disagree",
+                    cls: "js-dialog-close",
+                    onclick: function(){
+                        alert("You clicked Disagree action");
+                    }
+                }
+            ]
+        });
+    }
 
+function AdminRangUp(aktrang, id, name) {
+	if(aktrang > 14) {
+		return 1;
+	}
+	var newrank = aktrang+1;
+	Metro.dialog.create({
+            title: "Beförderung eines Team-Mitglieds",
+            content: "<div>Möchten Sie "+name+" wirklich befördern?</div>",
+            actions: [
+                {
+                    caption: "Ja",
+                    cls: "js-dialog-close success",
+                    onclick: function(){
+						$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+						$(".diviAccOption").prop("disabled",true);
+						$(".dividown").prop("disabled",true);
+						_setNewFrakRank(id, newrank);
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+function AdminDeactivateUser(id, name) {
+	Metro.dialog.create({
+            title: "Deaktivierung eines Team-Mitglied-Accounts",
+            content: "<div>Geben Sie den Grund an, weshalb "+name+" deaktiviert werden soll:<br><input id='admindeativateuser' type='text' data-role='input' data-clear-button='false'></div></div>",
+            actions: [
+                {
+                    caption: "Deaktivieren",
+                    cls: "js-dialog-close warning",
+                    onclick: function(){
+						var reason = $("#admindeativateuser").val();
+						if(reason.length > 0) {
+							$.post("http://localhost/newpd/_ajax.php?handle=AdminDeactivateUser", {id: id, reason: reason}, function(data, status, jqXHR) {
+								if(data == "1") {
+									$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+									$(".diviAccOption").prop("disabled",true);
+									$(".dividown").prop("disabled",true);
+									location.reload();
+								} else {
+									Metro.toast.create(data, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								}
+									
+							}).fail( function(xhr, textStatus, errorThrown) {
+									Metro.toast.create(xhr.responseText, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								});
+						} else {
+							Metro.toast.create("Ein Deaktivierungsgrund muss angegeben werden", function(){
+										$('.toast').remove();
+									}, 5000, 'alert');
+						}
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+function AdminLockUser(id, name) {
+	Metro.dialog.create({
+            title: "Sperrung eines Team-Mitglied-Accounts",
+            content: "<div>Geben Sie den Grund an, weshalb "+name+" gesperrt werden soll:<br><input id='adminlockuser' type='text' data-role='input' data-clear-button='false'></div></div>",
+            actions: [
+                {
+                    caption: "Sperren",
+                    cls: "js-dialog-close warning",
+                    onclick: function(){
+						var reason = $("#adminlockuser").val();
+						if(reason.length > 0) {
+							$.post("http://localhost/newpd/_ajax.php?handle=AdminLockUser", {id: id, reason: reason}, function(data, status, jqXHR) {
+								if(data == "1") {
+									$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+									$(".diviAccOption").prop("disabled",true);
+									$(".dividown").prop("disabled",true);
+									location.reload();
+								} else {
+									Metro.toast.create(data, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								}
+									
+							}).fail( function(xhr, textStatus, errorThrown) {
+									Metro.toast.create(xhr.responseText, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								});
+						} else {
+							Metro.toast.create("Ein Sperrungsgrund muss angegeben werden", function(){
+										$('.toast').remove();
+									}, 5000, 'alert');
+						}
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+function AdminUnlockUser(id, name) {
+	Metro.dialog.create({
+            title: "Team-Mitglied-Account freigeben",
+            content: "<div>Möchten Sie "+name+" wieder freigeben?</div>",
+            actions: [
+                {
+                    caption: "Ja",
+                    cls: "js-dialog-close success",
+                    onclick: function(){
+						$.post("http://localhost/newpd/_ajax.php?handle=AdminUnlockUser", {id: id}, function(data, status, jqXHR) {
+								if(data == "1") {
+									$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+									$(".diviAccOption").prop("disabled",true);
+									$(".dividown").prop("disabled",true);
+									location.reload();
+								} else {
+									Metro.toast.create(data, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								}
+						
+						}).fail( function(xhr, textStatus, errorThrown) {
+								Metro.toast.create(xhr.responseText, function(){
+										$('.toast').remove();
+									}, 10000, 'alert');
+							});
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+function AdminSetLohn(id, name) {
+	Metro.dialog.create({
+            title: "Gehalt von "+name+" bearbeiten",
+            content: "<div>Geben Sie das neue Passwort ein:<br><input id='adminsetlohn' type='number' data-role='input' data-clear-button='false'></div>",
+            actions: [
+                {
+                    caption: "Speichern",
+                    cls: "js-dialog-close success",
+                    onclick: function(){
+						var lohn = $("#adminsetlohn").val();
+						if($.isNumeric(lohn)) {
+							$.post("http://localhost/newpd/_ajax.php?handle=AdminSetLohn", {lohn: lohn, id: id}, function(data, status, jqXHR) {
+								if(data == "1") {
+									$("#lohn_"+id).removeClass('ani-shuttle');
+									Metro.toast.create("Gehalt von "+name+" geändert", function(){
+										$('.toast').remove();
+									}, 5000, 'success');
+								} else {
+									Metro.toast.create(data, function(){
+										$('.toast').remove();
+									}, 5000, 'alert');
+								}
+							}).fail( function(xhr, textStatus, errorThrown) {
+								Metro.toast.create(xhr.responseText, function(){
+										$('.toast').remove();
+									}, 10000, 'alert');
+							});
+						} else {
+							Metro.toast.create("Die Gehaltsangabe muss eine Zahl sein!", function(){
+										$('.toast').remove();
+									}, 5000, 'alert');
+						}
+						
+						
+                    }
+                },
+                {
+                    caption: "Abbrechen",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+	
+}
+
+function AdminSetPassword(id, name) {
+	Metro.dialog.create({
+            title: "Passwort von "+name+" ändern",
+            content: "<div>Geben Sie das neue Passwort ein:<br><input id='adminsetpassword' type='password' data-role='input' data-clear-button='false'></div>",
+            actions: [
+                {
+                    caption: "Speichern",
+                    cls: "js-dialog-close success",
+                    onclick: function(){
+						var newpw = $("#adminsetpassword").val();
+						$.post("http://localhost/newpd/_ajax.php?handle=AdminSetPassword", {newpw: newpw, id: id}, function(data, status, jqXHR) {
+								if(data == "1") {
+									Metro.toast.create("Passwort von "+name+" geändert", function(){
+										$('.toast').remove();
+									}, 5000, 'success');
+								} else {
+									Metro.toast.create(data, function(){
+										$('.toast').remove();
+									}, 5000, 'alert');
+								}
+						}).fail( function(xhr, textStatus, errorThrown) {
+								Metro.toast.create(xhr.responseText, function(){
+										$('.toast').remove();
+									}, 10000, 'alert');
+							});
+						
+                    }
+                },
+                {
+                    caption: "Abbrechen",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+	
+}
+
+function AdminRangDown(aktrang, id, name) {
+	if(aktrang < 1) {
+		return 1;
+	}
+	var newrank = aktrang-1;
+	Metro.dialog.create({
+            title: "Degradierung eines Team-Mitglieds",
+            content: "<div>Möchten Sie "+name+" wirklich degradieren?</div>",
+            actions: [
+                {
+                    caption: "Ja",
+                    cls: "js-dialog-close alert",
+                    onclick: function(){
+						$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+						$(".diviAccOption").prop("disabled",true);
+						$(".dividown").prop("disabled",true);
+						_setNewFrakRank(id, newrank);
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+function _setNewFrakRank(id, rank) {
+	$.post("http://localhost/newpd/_ajax.php?handle=setnewfrakrank", {rank: rank, id: id}, function(data, status, jqXHR) {// success callback
+				location.reload();
+        }).fail( function(xhr, textStatus, errorThrown) {
+				Metro.toast.create(xhr.responseText, function(){
+						$('.toast').remove();
+					}, 10000, 'alert');
+			});
+}
+
+function _getFrakRank(id, rank) {
+	$.post("http://localhost/newpd/_ajax.php?handle=getfrakrank", {rank: rank}, function(data, status, jqXHR) {// success callback
+				$('#rankname_'+id).html(data);
+				var h = $('#rankname_'+id);
+		console.log('ACHTUNG');
+		console.log(h);
+        }).fail( function(xhr, textStatus, errorThrown) {
+				Metro.toast.create(xhr.responseText, function(){
+						$('.toast').remove();
+					}, 2000, 'alert');
+			});
+}
+function testlol() {
+	Metro.activity.open({
+        type: 'square',
+        overlayColor: '#fff',
+        overlayAlpha: 1,
+        text: '<div class=\'mt-2 text-small\'>Please, wait...</div>',
+        overlayClickClose: true
+    });
+}
+
+function addAkte(){
+		$("#addPakte").toggle(1000, "swing");
+		$("#addAkteJS").html('<button class="button warning" onclick="addAkteClose()"><span style="margin-right: 5px;"class="mif-arrow-left icon"></span>  Abbrechen</button>');
+	}
+	function addAkteClose(closetime = 1000){
+		$("#addPakte").toggle(closetime, "swing");
+		$("#addAkteJS").html('<button class="button success" onclick="addAkte()"><span style="margin-right: 5px;"class="mif-plus icon"></span>  Eintrag hinzufügen</button>');
+		
+	}
+	
+	function addAkteRating() {
+		$(".addAkteRating").toggle('fast');
+		$(".addAkteRatingLink").fadeOut();
+	}
+	
+	function _addaktehtml(id, admin) {
+		$(".addaktehtml").html('');
+		$(".addaktehtml").html('<p class="text-center"> \
+            <textarea data-role="textarea" id="aktenText" placeholder="Eintrag schreiben..."></textarea><br> \
+			<a href="javascript:void(0)" class="addAkteRatingLink" onclick="addAkteRating()">Bewertung anfügen</a> \
+			<div class="addAkteRating"><input id="aktenRating" data-role="rating" data-stared-color="orange" /></div> \
+			<button class="button success" onclick="addAktenPost('+id+', \''+admin+'\')">Hinzufügen</button> \
+        </p>');
+	}
+
+	function addAktenPost(id, admin) {
+		var nowdate = new Date();
+        var day = nowdate.getDate();
+		day = (day < 10) ? '0'+day : day;
+        var month = nowdate.getMonth();
+		month = (month < 10) ? '0'+month : month;
+		var year = nowdate.getFullYear();
+		var hour = nowdate.getHours();
+		hour = (hour < 10) ? '0'+hour : hour;
+		var minute = nowdate.getMinutes();
+		minute = (minute < 10) ? '0'+minute : minute;
+		var aktenText = $("#aktenText").val();
+		var aktenRating = $("#aktenRating").val();
+		
+		if(aktenText.length == 0) {
+			Metro.toast.create("Dieser Akteneintrag muss einen Inhalt haben", function(){
+						$('.toast').remove();
+					}, 3000, 'alert');
+		} else {
+			var tmprating = (aktenRating == "0") ? '' : '<span class="badge"><input data-role="rating" data-stared-color="orange" data-value="'+aktenRating+'" data-static="true"></span>';
+			addAkteClose('fast');
+			_addaktehtml(id, admin);
+			
+			
+				$.post("http://localhost/newpd/_ajax.php?handle=addPAkte", {text: aktenText, rating: aktenRating, admin: admin,id: id}, function(data, status, jqXHR) {// success callback
+					$(".noAkteFound").css('display', 'none');
+					$(".timeline").prepend('<div id="pakte_'+data+'" class="timeline-container primary"> \
+								<div class="timeline-icon">\
+									<i class="mif-file-text"></i> \
+								</div> \
+								<div class="timeline-body"> \
+									'+tmprating+'\
+									'+nl2br(aktenText)+' \
+									<p class="timeline-subtitle text-shadow">'+day+'.'+month+'.'+year+' um '+hour+':'+minute+' Uhr von '+admin+'  | <a href="javascript:void(0)" onclick="pakte_delete('+data+', '+id+')" class="timeline-link"><span class="mif-bin"></span> Eintrag löschen</a></p> \
+								</div>\
+							</div>');
+			}).fail( function(xhr, textStatus, errorThrown) {
+					Metro.toast.create(xhr.responseText, function(){
+							$('.toast').remove();
+						}, 10000, 'alert');
+				});
+			}
+
+	}
+
+function pakte_delete(id, uid) {
+	$.post("http://localhost/newpd/_ajax.php?handle=deletePAkte", {pid: id, id: uid}, function(data, status, jqXHR) {
+		if(data < 1) {
+			$(".noAkteFound").css('display', 'block');
+		}
+		$("#pakte_"+id).remove();
+
+			}).fail( function(xhr, textStatus, errorThrown) {
+					Metro.toast.create(xhr.responseText, function(){
+							$('.toast').remove();
+						}, 10000, 'alert');
+				});
+}
+
+function AdminDeleteUser(id, name) {
+	Metro.dialog.create({
+            title: "Team-Mitglied-Account löschen",
+            content: "<div>Möchten Sie "+name+" endgültig löschen?</div>",
+            actions: [
+                {
+                    caption: "Ja",
+                    cls: "js-dialog-close alert",
+                    onclick: function(){
+						$.post("http://localhost/newpd/_ajax.php?handle=AdminDeleteUser", {id: id}, function(data, status, jqXHR) {
+								if(data == "1") {
+									$(".diviAccOption").html('<span class="mif-spinner4 ani-spin"></span>');
+									$(".diviAccOption").prop("disabled",true);
+									$(".dividown").prop("disabled",true);
+									location.reload();
+								} else {
+									Metro.toast.create(data, function(){
+											$('.toast').remove();
+										}, 10000, 'alert');
+								}
+						
+						}).fail( function(xhr, textStatus, errorThrown) {
+								Metro.toast.create(xhr.responseText, function(){
+										$('.toast').remove();
+									}, 10000, 'alert');
+							});
+                    }
+                },
+                {
+                    caption: "Nein",
+                    cls: "js-dialog-close",
+                }
+            ]
+        });
+}
+
+	function nl2br (str, replaceMode, isXhtml) {
+
+	  var breakTag = (isXhtml) ? '<br />' : '<br>';
+	  var replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
+	  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
+	}
+	
+	function test() {
+		addAkteClose('fast');
+		_addaktehtml();
+		$(".noAkteFound").css('display', 'none');
+		$(".timeline").prepend('<div class="timeline-container primary"> \
+                    <div class="timeline-icon">\
+                        <i class="far fa-grin-wink"></i> \
+                    </div> \
+                    <div class="timeline-body"> \
+                        <span class="badge"><input data-role="rating" data-stared-color="orange" data-value="3" data-static="true"></span>\
+                        palwal ist geil \
+                        <p class="timeline-subtitle">1 Hours Ago</p> \
+                    </div>\
+                </div>');
+		
+		//alert("Text: "+text+" Rating: "+rating);
+	}
 $(function() {
     
 	
